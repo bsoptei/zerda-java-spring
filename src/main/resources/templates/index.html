@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"></link>
+    <title>Welcome</title>
+</head>
+<body>
+<main>
+    <p>Thank you for visiting our website! To get early access to our planned projects, please fill in the following
+        quick questionnaire.</p>
+    <form action="#" th:action="@{'/submit'}" th:object="${feedback}" method="post">
+        <div>
+            <label for="opinion" th:text="'Describe your experience with Green Fox Academy so far'">
+                Describe your experience with Green Fox Academy so far
+            </label>
+            <textarea id="opinion" th:field="*{opinion}" rows="4" cols="50" th:required="required"
+                      required="true"></textarea>
+        </div>
+        <div>
+            <label for="rating"
+                   th:text="'On a scale of 1 to 10, how likely are you to recommend Green Fox Academy to a friend?'">
+                On a scale of 1 to 10, how likely are you to recommend Green Fox Academy to a friend?</label>
+            <input id="rating" type="number" th:field="*{rating}" th:required="required" required="true"/>
+        </div>
+        <div>
+            <label for="email" th:text="'Your email address:'">Your email address:</label>
+            <input type="email" id="email" th:field="*{email}" th:required="required" required="true"/>
+        </div>
+        <input type="submit" value="Submit"/>
+    </form>
+    <p class="error" th:if="${error.length() gt 0}" th:text="${error}">This is an error message</p>
+</main>
+</body>
+</html>
